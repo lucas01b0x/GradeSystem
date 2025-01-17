@@ -3,12 +3,27 @@
  */
 package com.lucas.gradesys;
 
+import java.net.URL;
+import java.nio.file.FileSystems;
+
 public class App {
     public String getGreeting() {
         return "Hello Lucas!";
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        Course course = new Course();
+        URL inputFileResource = App.class.getClassLoader().getResource("Grades.csv");
+        // String inputFilePath = inputFileResource != null ? inputFileResource.getPath() : null;
+        String inputFilePath = "C:\\Users\\ouluc\\Documents\\Programming\\GradeSystem\\app\\src\\main\\resources\\Grades.csv";
+        try {
+            course.loadCourseWorkFromCSV(FileSystems.getDefault().getPath(inputFilePath));
+            course.print(course.courseWorkList.toArray(new CourseWork[0]));
+        } catch (Exception e) {
+            System.out.println("CSV file not found: " + inputFilePath);
+            e.printStackTrace();
+        }
+
+
     }
 }
