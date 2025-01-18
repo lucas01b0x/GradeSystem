@@ -1,6 +1,6 @@
 package com.lucas.gradesys;
 
-public class CourseWork {
+public class CourseWork implements Comparable<CourseWork> {
     private String name;
     private double grade;
     private String studentName;
@@ -26,5 +26,19 @@ public class CourseWork {
     @Override
     public String toString() {
         return "StudentName: " + this.studentName + " Work: " + this.name + " Grade: " + this.grade;
+    }
+
+    @Override
+    public int compareTo(CourseWork o) {
+        if (this.grade > o.grade) {
+            // Current object has a higher grade...
+            return 1;
+        } else if (this.grade < o.grade) {
+            // Current object has a lower grade...
+            return -1;
+        } else {
+            // Grades are the same.
+            return 0;
+        }
     }
 }

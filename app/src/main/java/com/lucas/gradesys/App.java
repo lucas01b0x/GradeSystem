@@ -3,8 +3,15 @@
  */
 package com.lucas.gradesys;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
+
+import com.opencsv.exceptions.CsvException;
 
 public class App {
     public String getGreeting() {
@@ -13,17 +20,13 @@ public class App {
 
     public static void main(String[] args) {
         Course course = new Course();
-        URL inputFileResource = App.class.getClassLoader().getResource("Grades.csv");
-        // String inputFilePath = inputFileResource != null ? inputFileResource.getPath() : null;
-        String inputFilePath = "C:\\Users\\ouluc\\Documents\\Programming\\GradeSystem\\app\\src\\main\\resources\\Grades.csv";
+        InputStream inputFileStream = App.class.getClassLoader().getResourceAsStream("Grades.csv");
+
         try {
-            course.loadCourseWorkFromCSV(FileSystems.getDefault().getPath(inputFilePath));
+            course.loadCourseWorkFromCSV(inputFileStream);
             course.print(course.courseWorkList.toArray(new CourseWork[0]));
-        } catch (Exception e) {
-            System.out.println("CSV file not found: " + inputFilePath);
+        } catch (IOException | CsvException e) {
             e.printStackTrace();
         }
-
-
     }
 }
