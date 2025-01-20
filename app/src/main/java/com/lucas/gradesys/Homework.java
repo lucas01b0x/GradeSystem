@@ -8,7 +8,8 @@ public class Homework extends CourseWork {
         this.dueDate = dueDate;
     }
 
-    public String getDueDate() {
+    @Override
+    public String getDate() {
         return this.dueDate;
     }
 

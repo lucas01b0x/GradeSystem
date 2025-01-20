@@ -62,6 +62,31 @@ public class Course {
         }
     }
 
+    // TODO: FIX
+    private void selectionSortDate(CourseWork[] data) {
+        for (int i = 0; i < data.length; i++) {
+            CourseWork current = data[i];
+            String earliest = "99999999";
+            CourseWork swap = current;
+            int swapIndex = i;
+            for (int j = i; j < data.length; j++) {
+                if (data[j].getDate().compareTo(earliest) < 0) {
+                    swap = data[j];
+                    swapIndex = j;
+                    earliest = swap.getDate();
+                }
+            }
+            data[swapIndex] = current;
+            data[i] = swap;
+        }
+    }
+
+    public void printIncreasingDate() {
+        CourseWork[] data = this.courseWorkList.toArray(new CourseWork[0]);
+        this.selectionSortDate(data);
+        this.print(data);
+    }
+    
     private void bubbleSortStudentNames(CourseWork[] data) {
         int end = data.length;
         while (end > 1) {
@@ -95,7 +120,9 @@ public class Course {
                     break;
                 }
                 data[j+1] = data[j];
+                data[j] = current;
             }
+
         }
     }
 

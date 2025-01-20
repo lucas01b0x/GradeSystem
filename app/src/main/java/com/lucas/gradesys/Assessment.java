@@ -13,6 +13,11 @@ public class Assessment extends CourseWork {
     }
 
     @Override
+    public String getDate() {
+        return this.assessmentDate;
+    }
+
+    @Override
     public String toString() {
         return super.toString() + " AssessmentDate: " + this.assessmentDate;
     }

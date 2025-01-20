@@ -28,6 +28,10 @@ public class CourseWork implements Comparable<CourseWork> {
         return "StudentName: " + this.studentName + " Work: " + this.name + " Grade: " + this.grade;
     }
 
+    public String getDate() {
+        return "";
+    }
+
     @Override
     public int compareTo(CourseWork o) {
         if (this.grade > o.grade) {
