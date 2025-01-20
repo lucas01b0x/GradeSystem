@@ -5,10 +5,6 @@ package com.lucas.gradesys;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 
 import com.opencsv.exceptions.CsvException;
@@ -21,10 +17,13 @@ public class App {
     public static void main(String[] args) {
         Course course = new Course();
         InputStream inputFileStream = App.class.getClassLoader().getResourceAsStream("Grades.csv");
-
         try {
             course.loadCourseWorkFromCSV(inputFileStream);
-            course.print(course.courseWorkList.toArray(new CourseWork[0]));
+            // Testing:
+            System.out.println("Sorted Names: ");
+            course.printIncreasingNames();
+            System.out.println("Sorted Grades: ");
+            course.printIncreasingGrades();
         } catch (IOException | CsvException e) {
             e.printStackTrace();
         }

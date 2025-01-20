@@ -14,8 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Course {
-    // Make private later
-    public List<CourseWork> courseWorkList;
+    private List<CourseWork> courseWorkList;
 
     public void loadCourseWorkFromCSV(Path filePath) throws IOException, CsvException {
         this.courseWorkList = new ArrayList<>();
@@ -61,6 +60,50 @@ public class Course {
                 return csvReader.readAll();
             }
         }
+    }
+
+    // TODO: CURRENTLY DOES NOT WORK... DEBUG
+    private void bubbleSortNames(CourseWork[] data) {
+        int end = data.length;
+        int bubble = 0;
+        while (end > 1) {
+            while (bubble + 1 < end) {
+                CourseWork first = data[bubble];
+                CourseWork second = data[bubble + 1];
+                // If first.getName() is lexicographically greater than second.getName()
+                if (first.getName().compareTo(second.getName()) > 0) {
+                    data[bubble] = second;
+                    data[bubble + 1] = first;
+                }
+                bubble++;
+            }
+            end--;
+        }
+    }
+    
+    public void printIncreasingNames() {
+        CourseWork[] data = this.courseWorkList.toArray(new CourseWork[0]);
+        this.bubbleSortNames(data);
+        this.print(data);
+    }
+
+    private void insertionSortGrades(CourseWork[] data) {
+        for (int i = 1; i < data.length; i++) {
+            CourseWork current = data[i];
+            for (int j = i - 1; j >= 0; j--) {
+                if (current.getGrade() >= data[j].getGrade()) {
+                    data[j+1] = current;
+                    break;
+                }
+                data[j+1] = data[j];
+            }
+        }
+    }
+
+    public void printIncreasingGrades() {
+        CourseWork[] data = this.courseWorkList.toArray(new CourseWork[0]);
+        this.insertionSortGrades(data);
+        this.print(data);
     }
 
     public void print(CourseWork[] works) {
