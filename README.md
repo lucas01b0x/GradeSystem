@@ -38,17 +38,19 @@ In the root directory of the project,
 ```
 
 ### Option 1: Running the application with Gradle
-In the root directory of the project,
-```bash
-./gradlew run
-```
-You should see the following after running.
+1. In the root directory of the project,
+    ```bash
+    ./gradlew run
+    ```
+    You should see the following after running.
 
-Input the path for your CSV file location as shown below.
+    ![GradleRunScreenshot](./GradleRunScreenshot.png)
 
-Otherwise, the application will default to a prewritten testing CSV file.
+2. Enter the path for your CSV file location (the example above uses `C:\Grades.csv` as an example path).
 
-![GradleRunScreenshot](./GradleRunScreenshot.png)
+    OR
+
+    Enter nothing and the application will default to a prewritten testing CSV file.
 
 ### Option 2: Running the application using app.zip
 * After successfully running `./gradlew build` you should see app.zip in `GradeSystem\app\build\distributions\app.zip`
