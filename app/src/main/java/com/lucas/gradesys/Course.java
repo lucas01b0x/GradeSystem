@@ -20,55 +20,6 @@ public class Course {
     private List<CourseWork> courseWorkList;
 
     /**
-     * This is not in-use. It is here to showcase Java Overloading.
-     * 
-     * Reads CSV file and stores the data into an arrayList containing courseWork
-     * objects.
-     * 
-     * Expected CSV file format:
-     * type,name,studentName,grade,date
-     * 
-     * @param filePath CSV file path
-     * @throws IOException
-     * @throws CsvException
-     */
-    public void loadCourseWorkFromCSV(Path filePath) throws IOException, CsvException {
-        this.courseWorkList = new ArrayList<>();
-        List<String[]> fileContent = this.readCSV(filePath);
-        for (String[] courseWorkInfo : fileContent) {
-            switch (courseWorkInfo[0]) {
-                case Homework.CSV_TYPE_VALUE:
-                    this.courseWorkList.add(new Homework(courseWorkInfo[1], courseWorkInfo[2],
-                            Double.parseDouble(courseWorkInfo[3]), courseWorkInfo[4]));
-                    break;
-                case Assessment.CSV_TYPE_VALUE:
-                    this.courseWorkList.add(new Assessment(courseWorkInfo[1], courseWorkInfo[2],
-                            Double.parseDouble(courseWorkInfo[3]), courseWorkInfo[4]));
-                    break;
-            }
-        }
-    }
-
-    /**
-     * This is not in-use. It is here to showcase Java Overloading.
-     * 
-     * Helper method. Reads CSV file content and stores the data into a List of
-     * String Arrays.
-     * 
-     * @param filePath
-     * @return A List of String Arrays.
-     * @throws IOException
-     * @throws CsvException
-     */
-    private List<String[]> readCSV(Path filePath) throws IOException, CsvException {
-        try (Reader reader = Files.newBufferedReader(filePath)) {
-            try (CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build()) {
-                return csvReader.readAll();
-            }
-        }
-    }
-
-    /**
      * Reads CSV file and stores the data into an arrayList containing courseWork
      * objects.
      * 
@@ -107,6 +58,55 @@ public class Course {
      */
     private List<String[]> readCSV(InputStream stream) throws IOException, CsvException {
         try (InputStreamReader reader = new InputStreamReader(stream)) {
+            try (CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build()) {
+                return csvReader.readAll();
+            }
+        }
+    }
+
+    /**
+     * This method showcases Java Overloading.
+     * 
+     * Reads CSV file and stores the data into an arrayList containing courseWork
+     * objects.
+     * 
+     * Expected CSV file format:
+     * type,name,studentName,grade,date
+     * 
+     * @param filePath CSV file path
+     * @throws IOException
+     * @throws CsvException
+     */
+    public void loadCourseWorkFromCSV(Path filePath) throws IOException, CsvException {
+        this.courseWorkList = new ArrayList<>();
+        List<String[]> fileContent = this.readCSV(filePath);
+        for (String[] courseWorkInfo : fileContent) {
+            switch (courseWorkInfo[0]) {
+                case Homework.CSV_TYPE_VALUE:
+                    this.courseWorkList.add(new Homework(courseWorkInfo[1], courseWorkInfo[2],
+                            Double.parseDouble(courseWorkInfo[3]), courseWorkInfo[4]));
+                    break;
+                case Assessment.CSV_TYPE_VALUE:
+                    this.courseWorkList.add(new Assessment(courseWorkInfo[1], courseWorkInfo[2],
+                            Double.parseDouble(courseWorkInfo[3]), courseWorkInfo[4]));
+                    break;
+            }
+        }
+    }
+
+    /**
+     * This method showcases Java Overloading.
+     * 
+     * Helper method. Reads CSV file content and stores the data into a List of
+     * String Arrays.
+     * 
+     * @param filePath
+     * @return A List of String Arrays.
+     * @throws IOException
+     * @throws CsvException
+     */
+    private List<String[]> readCSV(Path filePath) throws IOException, CsvException {
+        try (Reader reader = Files.newBufferedReader(filePath)) {
             try (CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build()) {
                 return csvReader.readAll();
             }

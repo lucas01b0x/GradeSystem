@@ -3,6 +3,7 @@ package com.lucas.gradesys;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.FileSystems;
 import java.util.Scanner;
 
 import com.opencsv.exceptions.CsvException;
@@ -21,27 +22,27 @@ public class App {
         Course course = new Course();
         InputStream inputFileStream = App.class.getClassLoader().getResourceAsStream("Grades.csv");
 
-        if (!path.isEmpty()) {
-            try {
-                inputFileStream = new FileInputStream(path);
-            } catch (IOException e) {
-                System.out.println("Invalid path");
-                System.exit(1);
+        try {
+            if (!path.isEmpty()) {
+                course.loadCourseWorkFromCSV(FileSystems.getDefault().getPath(path));
+            } else {
+                course.loadCourseWorkFromCSV(inputFileStream);
             }
+        } catch (IOException e) {
+            System.out.println("Invalid path");
+            System.exit(1);
+        } catch (CsvException e) {
+            System.out.println("Invalid CSV file");
+            System.exit(1);
         }
 
-        try {
-            course.loadCourseWorkFromCSV(inputFileStream);
-            System.out.println("Sorted CourseWork by Grade: ");
-            course.printIncreasingGrades();
-            System.out.println("========");
-            System.out.println("Sorted CourseWork by Student Name: ");
-            course.printIncreasingNames();
-            System.out.println("========");
-            System.out.println("Sorted CourseWork by Date: ");
-            course.printIncreasingDate();
-        } catch (IOException | CsvException e) {
-            e.printStackTrace();
-        }
+        System.out.println("Sorted CourseWork by Grade: ");
+        course.printIncreasingGrades();
+        System.out.println("========");
+        System.out.println("Sorted CourseWork by Student Name: ");
+        course.printIncreasingNames();
+        System.out.println("========");
+        System.out.println("Sorted CourseWork by Date: ");
+        course.printIncreasingDate();
     }
 }
