@@ -1,6 +1,13 @@
 # GradeSystem
 GradeSystem is a Java application to help teachers to view and sort student coursework data efficiently. This project intends to demonstrate several skills needed for the College Board AP CS A exam as of 2025.
 
+## Features
+* Import student coursework data via a CSV file
+* View sorted coursework list by...
+    * Student Name Alphabetically
+    * Recieved Grade
+    * Assigned/Due Date
+
 ## Getting Started
 
 ### Cloning the repository

@@ -35,13 +35,13 @@ public class App {
 
         try {
             course.loadCourseWorkFromCSV(inputFileStream);
-            System.out.println("Sorted Grades: ");
+            System.out.println("Sorted CourseWork by Grade: ");
             course.printIncreasingGrades();
             System.out.println("========");
-            System.out.println("Sorted Names: ");
+            System.out.println("Sorted CourseWork by Student Name: ");
             course.printIncreasingNames();
             System.out.println("========");
-            System.out.println("Sorted Dates: ");
+            System.out.println("Sorted CourseWork by Date: ");
             course.printIncreasingDate();
         } catch (IOException | CsvException e) {
             e.printStackTrace();
