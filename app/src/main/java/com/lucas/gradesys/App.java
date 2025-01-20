@@ -3,20 +3,34 @@
  */
 package com.lucas.gradesys;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
+import java.util.Scanner;
 
 import com.opencsv.exceptions.CsvException;
 
 public class App {
-    public String getGreeting() {
-        return "Hello Lucas!";
-    }
 
     public static void main(String[] args) {
+        Scanner myScanner = new Scanner(System.in);
+        System.out.println("Please input path to CSV file: (default to testing Grades.csv)");
+        String path = myScanner.nextLine();
+        myScanner.close();
+
         Course course = new Course();
         InputStream inputFileStream = App.class.getClassLoader().getResourceAsStream("Grades.csv");
+
+        if (!path.isEmpty()) {
+            try {
+                inputFileStream = new FileInputStream(path);
+            } catch (IOException e) {
+                System.out.println("Invalid path");
+                System.exit(1);
+            }
+        }
+
         try {
             course.loadCourseWorkFromCSV(inputFileStream);
             // Testing:

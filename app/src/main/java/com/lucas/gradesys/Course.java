@@ -16,21 +16,47 @@ import java.util.List;
 public class Course {
     private List<CourseWork> courseWorkList;
 
+    /**
+     * This is not in-use. It is here to showcase Java Overloading.
+     * 
+     * Reads CSV file and stores the data into an arrayList containing courseWork
+     * objects.
+     * 
+     * Expected CSV file format:
+     * type,name,studentName,grade,date
+     * 
+     * @param filePath CSV file path
+     * @throws IOException
+     * @throws CsvException
+     */
     public void loadCourseWorkFromCSV(Path filePath) throws IOException, CsvException {
         this.courseWorkList = new ArrayList<>();
         List<String[]> fileContent = this.readCSV(filePath);
         for (String[] courseWorkInfo : fileContent) {
             switch (courseWorkInfo[0]) {
                 case "Homework":
-                    this.courseWorkList.add(new Homework(courseWorkInfo[1], courseWorkInfo[2], Double.parseDouble(courseWorkInfo[3]), courseWorkInfo[4]));
+                    this.courseWorkList.add(new Homework(courseWorkInfo[1], courseWorkInfo[2],
+                            Double.parseDouble(courseWorkInfo[3]), courseWorkInfo[4]));
                     break;
                 case "Assessment":
-                    this.courseWorkList.add(new Assessment(courseWorkInfo[1], courseWorkInfo[2], Double.parseDouble(courseWorkInfo[3]), courseWorkInfo[4]));
+                    this.courseWorkList.add(new Assessment(courseWorkInfo[1], courseWorkInfo[2],
+                            Double.parseDouble(courseWorkInfo[3]), courseWorkInfo[4]));
                     break;
             }
         }
     }
 
+    /**
+     * This is not in-use. It is here to showcase Java Overloading.
+     * 
+     * Helper method. Reads CSV file content and stores the data into a List of
+     * String Arrays.
+     * 
+     * @param filePath
+     * @return A List of String Arrays.
+     * @throws IOException
+     * @throws CsvException
+     */
     private List<String[]> readCSV(Path filePath) throws IOException, CsvException {
         try (Reader reader = Files.newBufferedReader(filePath)) {
             try (CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build()) {
@@ -39,21 +65,43 @@ public class Course {
         }
     }
 
+    /**
+     * Reads CSV file and stores the data into an arrayList containing courseWork
+     * objects.
+     * 
+     * Expected CSV file format:
+     * type,name,studentName,grade,date
+     * 
+     * @param stream CSV file input stream.
+     * @throws IOException
+     * @throws CsvException
+     */
     public void loadCourseWorkFromCSV(InputStream stream) throws IOException, CsvException {
         this.courseWorkList = new ArrayList<>();
         List<String[]> fileContent = this.readCSV(stream);
         for (String[] courseWorkInfo : fileContent) {
             switch (courseWorkInfo[0]) {
                 case "Homework":
-                    this.courseWorkList.add(new Homework(courseWorkInfo[1], courseWorkInfo[2], Double.parseDouble(courseWorkInfo[3]), courseWorkInfo[4]));
+                    this.courseWorkList.add(new Homework(courseWorkInfo[1], courseWorkInfo[2],
+                            Double.parseDouble(courseWorkInfo[3]), courseWorkInfo[4]));
                     break;
                 case "Assessment":
-                    this.courseWorkList.add(new Assessment(courseWorkInfo[1], courseWorkInfo[2], Double.parseDouble(courseWorkInfo[3]), courseWorkInfo[4]));
+                    this.courseWorkList.add(new Assessment(courseWorkInfo[1], courseWorkInfo[2],
+                            Double.parseDouble(courseWorkInfo[3]), courseWorkInfo[4]));
                     break;
             }
         }
     }
 
+    /**
+     * Helper method. Reads CSV file content and stores the data into a List of
+     * String Arrays.
+     * 
+     * @param stream
+     * @return A List of String Arrays.
+     * @throws IOException
+     * @throws CsvException
+     */
     private List<String[]> readCSV(InputStream stream) throws IOException, CsvException {
         try (InputStreamReader reader = new InputStreamReader(stream)) {
             try (CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build()) {
@@ -62,7 +110,13 @@ public class Course {
         }
     }
 
-    private void selectionSortDate(CourseWork[] data) {
+    /**
+     * Sorts an CourseWork Array by each CourseWork object's date field. Uses a
+     * selection sort algorithm.
+     * 
+     * @param data CourseWork Array
+     */
+    private void selectionSortIncreasingDate(CourseWork[] data) {
         for (int i = 0; i < data.length - 1; i++) {
             CourseWork current = data[i];
             String earliest = "99999999";
@@ -80,13 +134,23 @@ public class Course {
         }
     }
 
+    /**
+     * Prints a sorted CourseWork Array by each CourseWork object's date field.
+     */
     public void printIncreasingDate() {
         CourseWork[] data = this.courseWorkList.toArray(new CourseWork[0]);
-        this.selectionSortDate(data);
+        this.selectionSortIncreasingDate(data);
         this.print(data);
     }
-    
-    private void bubbleSortStudentNames(CourseWork[] data) {
+
+    /**
+     * Sorts an CourseWork Array by each CourseWork object's studentName field. Uses
+     * a
+     * bubble sort algorithm.
+     * 
+     * @param data CourseWork Array
+     */
+    private void bubbleSortIncreasingStudentNames(CourseWork[] data) {
         int end = data.length;
         while (end > 1) {
             int bubble = 0;
@@ -103,34 +167,52 @@ public class Course {
             end--;
         }
     }
-    
+
+    /**
+     * Prints a sorted CourseWork Array by each CourseWork object's studentName
+     * field.
+     */
     public void printIncreasingNames() {
         CourseWork[] data = this.courseWorkList.toArray(new CourseWork[0]);
-        this.bubbleSortStudentNames(data);
+        this.bubbleSortIncreasingStudentNames(data);
         this.print(data);
     }
 
-    private void insertionSortGrades(CourseWork[] data) {
+    /**
+     * Sorts an CourseWork Array by each CourseWork object's grade field. Uses a
+     * insertion sort algorithm.
+     * 
+     * @param data CourseWork Array
+     */
+    private void insertionSortIncreasingGrades(CourseWork[] data) {
         for (int i = 1; i < data.length; i++) {
             CourseWork current = data[i];
             for (int j = i - 1; j >= 0; j--) {
                 if (current.getGrade() >= data[j].getGrade()) {
-                    data[j+1] = current;
+                    data[j + 1] = current;
                     break;
                 }
-                data[j+1] = data[j];
+                data[j + 1] = data[j];
                 data[j] = current;
             }
 
         }
     }
 
+    /**
+     * Prints a sorted CourseWork Array by each CourseWork object's grade field.
+     */
     public void printIncreasingGrades() {
         CourseWork[] data = this.courseWorkList.toArray(new CourseWork[0]);
-        this.insertionSortGrades(data);
+        this.insertionSortIncreasingGrades(data);
         this.print(data);
     }
 
+    /**
+     * Prints an Array of CourseWork objects.
+     * 
+     * @param works Array of CourseWork objects.
+     */
     public void print(CourseWork[] works) {
         for (CourseWork w : works) {
             System.out.println(w);

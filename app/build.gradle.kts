@@ -10,6 +10,10 @@ plugins {
     application
 }
 
+tasks.withType<JavaExec> {
+    standardInput = System.`in`
+}
+
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
