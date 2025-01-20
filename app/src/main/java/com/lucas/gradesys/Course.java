@@ -62,16 +62,15 @@ public class Course {
         }
     }
 
-    // TODO: CURRENTLY DOES NOT WORK... DEBUG
-    private void bubbleSortNames(CourseWork[] data) {
+    private void bubbleSortStudentNames(CourseWork[] data) {
         int end = data.length;
-        int bubble = 0;
         while (end > 1) {
+            int bubble = 0;
             while (bubble + 1 < end) {
                 CourseWork first = data[bubble];
                 CourseWork second = data[bubble + 1];
                 // If first.getName() is lexicographically greater than second.getName()
-                if (first.getName().compareTo(second.getName()) > 0) {
+                if (first.getStudentName().compareTo(second.getStudentName()) > 0) {
                     data[bubble] = second;
                     data[bubble + 1] = first;
                 }
@@ -83,7 +82,7 @@ public class Course {
     
     public void printIncreasingNames() {
         CourseWork[] data = this.courseWorkList.toArray(new CourseWork[0]);
-        this.bubbleSortNames(data);
+        this.bubbleSortStudentNames(data);
         this.print(data);
     }
 
