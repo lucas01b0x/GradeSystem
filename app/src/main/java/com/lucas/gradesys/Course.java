@@ -37,11 +37,11 @@ public class Course {
         List<String[]> fileContent = this.readCSV(filePath);
         for (String[] courseWorkInfo : fileContent) {
             switch (courseWorkInfo[0]) {
-                case Homework.TYPE_COLUMN_VALUE:
+                case Homework.CSV_TYPE_VALUE:
                     this.courseWorkList.add(new Homework(courseWorkInfo[1], courseWorkInfo[2],
                             Double.parseDouble(courseWorkInfo[3]), courseWorkInfo[4]));
                     break;
-                case Assessment.TYPE_COLUMN_VALUE:
+                case Assessment.CSV_TYPE_VALUE:
                     this.courseWorkList.add(new Assessment(courseWorkInfo[1], courseWorkInfo[2],
                             Double.parseDouble(courseWorkInfo[3]), courseWorkInfo[4]));
                     break;
