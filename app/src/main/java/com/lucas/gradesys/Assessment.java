@@ -1,5 +1,8 @@
 package com.lucas.gradesys;
 
+/**
+ * Child class of CourseWork for Assessments
+ */
 public class Assessment extends CourseWork {
     private String assessmentDate;
 

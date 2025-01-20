@@ -1,5 +1,8 @@
 package com.lucas.gradesys;
 
+/**
+ * CourseWork class to hold attributes for all course related work.
+ */
 public class CourseWork implements Comparable<CourseWork> {
     private String name;
     private double grade;

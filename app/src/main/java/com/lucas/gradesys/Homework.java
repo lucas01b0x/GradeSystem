@@ -1,5 +1,8 @@
 package com.lucas.gradesys;
 
+/**
+ * Child class of CourseWork for Homework
+ */
 public class Homework extends CourseWork {
     private String dueDate;
 

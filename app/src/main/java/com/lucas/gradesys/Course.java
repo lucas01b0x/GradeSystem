@@ -13,6 +13,9 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class to organize data for a course.
+ */
 public class Course {
     private List<CourseWork> courseWorkList;
 

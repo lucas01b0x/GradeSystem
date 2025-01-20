@@ -11,6 +11,19 @@ Do the following:
 git clone https://github.com/lucas01b0x/GradeSystem.git
 ```
 
+### CSV input file format
+The CSV (Comma Seperated Values) file must be strictly formatted the following way:
+```CSV
+type,name,studentName,grade,date
+Homework,HW2,Yuri,100,20250118
+```
+* `type`: Homework or Assessment
+* `name`: Name of Coursework
+* `studentName`: Name of Student
+* `grade`: Grade in terms of the 100% scale
+* `date`: Date in YYYYMMDD number format
+
+
 ### Building the application
 In the root directory of the project,
 ```bash
