@@ -1,9 +1,10 @@
 package com.lucas.gradesys;
 
 /**
- * CourseWork class to hold attributes for all course related work.
+ * CourseWork class to hold attributes for all course related work. This class
+ * is abstract because we will never use it to initialize an object.
  */
-public class CourseWork implements Comparable<CourseWork> {
+public abstract class CourseWork implements Comparable<CourseWork> {
     private String name;
     private double grade;
     private String studentName;
@@ -31,9 +32,7 @@ public class CourseWork implements Comparable<CourseWork> {
         return "StudentName:" + this.studentName + " | Work:" + this.name + " | Grade:" + this.grade;
     }
 
-    public String getDate() {
-        return "";
-    }
+    public abstract String getDate();
 
     @Override
     public int compareTo(CourseWork o) {
