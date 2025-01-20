@@ -5,7 +5,7 @@ public class Assessment extends CourseWork {
     
     public Assessment(String name, String studentName, double grade, String assessmentDate) {
         super(name, studentName, grade);
-        this.assessmentDate = assessmentDate;
+        this.assessmentDate = assessmentDate.trim();
     }
 
     public String getAssessmentDate() {

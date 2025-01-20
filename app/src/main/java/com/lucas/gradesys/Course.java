@@ -62,9 +62,8 @@ public class Course {
         }
     }
 
-    // TODO: FIX
     private void selectionSortDate(CourseWork[] data) {
-        for (int i = 0; i < data.length; i++) {
+        for (int i = 0; i < data.length - 1; i++) {
             CourseWork current = data[i];
             String earliest = "99999999";
             CourseWork swap = current;

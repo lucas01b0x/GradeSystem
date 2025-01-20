@@ -5,7 +5,7 @@ public class Homework extends CourseWork {
 
     public Homework(String name, String studentName, double grade, String dueDate) {
         super(name, studentName, grade);
-        this.dueDate = dueDate;
+        this.dueDate = dueDate.trim();
     }
 
     @Override
