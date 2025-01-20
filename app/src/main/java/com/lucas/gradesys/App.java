@@ -20,12 +20,12 @@ public class App {
         myScanner.close();
 
         Course course = new Course();
-        InputStream inputFileStream = App.class.getClassLoader().getResourceAsStream("Grades.csv");
 
         try {
             if (!path.isEmpty()) {
                 course.loadCourseWorkFromCSV(FileSystems.getDefault().getPath(path));
             } else {
+                InputStream inputFileStream = App.class.getClassLoader().getResourceAsStream("Grades.csv");
                 course.loadCourseWorkFromCSV(inputFileStream);
             }
         } catch (IOException e) {
