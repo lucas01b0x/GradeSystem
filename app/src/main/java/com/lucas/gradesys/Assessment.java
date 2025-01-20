@@ -4,6 +4,7 @@ package com.lucas.gradesys;
  * Child class of CourseWork for Assessments
  */
 public class Assessment extends CourseWork {
+    public final static String TYPE_COLUMN_VALUE = "Assessment";
     private String assessmentDate;
 
     public Assessment(String name, String studentName, double grade, String assessmentDate) {
@@ -22,6 +23,6 @@ public class Assessment extends CourseWork {
 
     @Override
     public String toString() {
-        return super.toString() + " AssessmentDate: " + this.assessmentDate;
+        return super.toString() + " | AssessmentDate: " + this.assessmentDate;
     }
 }

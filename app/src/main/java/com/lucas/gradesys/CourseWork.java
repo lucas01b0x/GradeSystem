@@ -28,7 +28,7 @@ public class CourseWork implements Comparable<CourseWork> {
 
     @Override
     public String toString() {
-        return "StudentName: " + this.studentName + " Work: " + this.name + " Grade: " + this.grade;
+        return "StudentName:" + this.studentName + " | Work:" + this.name + " | Grade:" + this.grade;
     }
 
     public String getDate() {

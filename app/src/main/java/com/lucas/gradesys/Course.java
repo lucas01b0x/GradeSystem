@@ -37,11 +37,11 @@ public class Course {
         List<String[]> fileContent = this.readCSV(filePath);
         for (String[] courseWorkInfo : fileContent) {
             switch (courseWorkInfo[0]) {
-                case "Homework":
+                case Homework.TYPE_COLUMN_VALUE:
                     this.courseWorkList.add(new Homework(courseWorkInfo[1], courseWorkInfo[2],
                             Double.parseDouble(courseWorkInfo[3]), courseWorkInfo[4]));
                     break;
-                case "Assessment":
+                case Assessment.TYPE_COLUMN_VALUE:
                     this.courseWorkList.add(new Assessment(courseWorkInfo[1], courseWorkInfo[2],
                             Double.parseDouble(courseWorkInfo[3]), courseWorkInfo[4]));
                     break;
@@ -117,6 +117,8 @@ public class Course {
      * Sorts an CourseWork Array by each CourseWork object's date field. Uses a
      * selection sort algorithm.
      * 
+     * Time Complexity: O(n^2)
+     * 
      * @param data CourseWork Array
      */
     private void selectionSortIncreasingDate(CourseWork[] data) {
@@ -148,8 +150,9 @@ public class Course {
 
     /**
      * Sorts an CourseWork Array by each CourseWork object's studentName field. Uses
-     * a
-     * bubble sort algorithm.
+     * a bubble sort algorithm.
+     * 
+     * Time Complexity: O(n^2)
      * 
      * @param data CourseWork Array
      */
@@ -184,6 +187,8 @@ public class Course {
     /**
      * Sorts an CourseWork Array by each CourseWork object's grade field. Uses a
      * insertion sort algorithm.
+     * 
+     * Time Complexity: O(n^2)
      * 
      * @param data CourseWork Array
      */
